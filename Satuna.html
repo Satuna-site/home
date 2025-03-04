@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satuna Coffee and Food</title>
+  <!-- Font Awesome 用于图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2DhKNfTZ4Dl4UpH4Tn6n0d6Pu3G0qZJ/peHy51N8JcN1I2OR8UbJ12YQeRLeS/4wA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #e67e22; /* 活力橙色 */
+      --secondary: #2ecc71; /* 清新绿色 */
+      --dark: #34495e;     /* 深灰蓝 */
+      --light: #ecf0f1;    /* 浅灰色 */
+      --accent: #f1c40f;   /* 明亮黄色 */
+      --font-main: 'Nunito', sans-serif; /* 主要字体 */
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-main);
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Header */
+    header {
+      background-color: var(--light);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+    }
+    header:hover {
+      background-color: rgba(236, 240, 241, 0.8);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+    .logo:hover {
+      color: var(--secondary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    /* Hero Section */
+    .hero {
+      height: 85vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .satuna-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+    .satuna-title {
+      font-size: 8rem;
+      font-weight: 900;
+      background: linear-gradient(270deg, #f39c12, #e74c3c, #9b59b6, #f39c12);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientAnimation 6s ease infinite;
+      letter-spacing: 2px;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .coffee-food-subtitle {
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    .cta-btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .cta-btn:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    /* Social Cards */
+    .social-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100px;
+    }
+    .social-card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .social-card span {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .social-card:hover {
+      background-color: white;
+      color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    /* Section Headings */
+    .section-heading {
+      text-align: center;
+      margin: 60px 0 40px;
+      position: relative;
+    }
+    .section-heading h2 {
+      font-size: 3rem;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      color: var(--dark);
+    }
+    .section-heading h2::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 12px;
+      background-color: var(--accent);
+      bottom: 5px;
+      left: 20%;
+      z-index: -1;
+      opacity: 0.6;
+      border-radius: 5px;
+    }
+    /* Menu Section */
+    .menu-section {
+      padding: 60px 0;
+    }
+    .menu-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .menu-card {
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0;
+    }
+    .menu-card:nth-child(odd) {
+      transform: translateX(-50px);
+    }
+    .menu-card:nth-child(even) {
+      transform: translateX(50px);
+    }
+    .menu-card.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+    .menu-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s ease-out;
+      background-image: url('https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg');
+    }
+    .menu-card:hover .menu-img {
+      transform: scale(1.1);
+    }
+    .menu-content {
+      padding: 25px;
+    }
+    .menu-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+    .menu-card p {
+      color: #777;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .menu-btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .menu-btn:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+    /* Promo Section */
+    .promo-section {
+      padding: 80px 0;
+      text-align: center;
+      margin: 80px 0;
+      background: linear-gradient(135deg, var(--secondary), #27ae60);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .promo-section h2 {
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    }
+    .promo-section p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+    .promo-slider.carousel {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      margin-top: 30px;
+      overflow: hidden;
+    }
+    .promo-slider.carousel .carousel-track {
+      display: flex;
+      white-space: nowrap; /* 保证水平排列不折行 */
+      transform: translateX(0);
+    }
+    .promo-slider.carousel .slide {
+      width: 60%;
+      margin: 0 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      flex: 0 0 auto;
+    }
+    .promo-slider.carousel .slide img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      transition: transform 0.4s ease-out, filter 0.4s ease-out;
+    }
+    .promo-slider.carousel .slide:hover img {
+      transform: scale(1.12);
+      filter: brightness(1.1);
+    }
+    /* 替换 Testimonials 为 “评价邀请” */
+    .review-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 0;
+    }
+    .review-container {
+      text-align: center;
+      /* 与 SATUNA 标题同款流动渐变背景 */
+      background: linear-gradient(270deg, #f39c12, #e74c3c, #9b59b6, #f39c12);
+      background-size: 400% 400%;
+      animation: gradientAnimation 6s ease infinite;
+      border-radius: 20px;
+      padding: 40px;
+      color: #fff;
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .review-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .review-container p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .review-btn {
+      background-color: #fff;
+      color: var(--dark);
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.1rem;
+    }
+    .review-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Location Section */
+    .location-section {
+      padding: 80px 0;
+    }
+    .location-grid {
+      display: block;
+      max-width: 850px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .location-info {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .location-info h3 {
+      font-size: 2.2rem;
+      margin-bottom: 22px;
+      color: var(--primary);
+    }
+    .location-info p {
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      color: #666;
+    }
+    .location-info .icon {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+    /* Contact Section */
+    .contact-section {
+      background-color: var(--dark);
+      color: white;
+      padding: 80px 0;
+    }
+    /* 将 contact-section 里的 section-heading h2 文字改为白色 */
+    .contact-section .section-heading h2 {
+      color: #fff !important;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .contact-icon {
+      width: 55px;
+      height: 55px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 18px;
+      font-size: 1.4rem;
+      color: white;
+    }
+    .contact-form h3 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--accent);
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    .form-input:focus {
+      outline: none;
+      background-color: rgba(255,255,255,0.2);
+    }
+    .form-input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    .submit-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .submit-btn:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    /* Hours Section */
+    .hours-section {
+      padding: 60px 0;
+      text-align: center;
+    }
+    .hours-container {
+      max-width: 650px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 45px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .hours-day {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .hours-day:last-child {
+      border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero { padding: 0 40px; }
+      .satuna-title { font-size: 6rem; }
+      .coffee-food-subtitle { font-size: 1.6rem; }
+      .hero p { font-size: 1.2rem; }
+      .location-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .satuna-title { font-size: 4rem; }
+      .coffee-food-subtitle { font-size: 1.4rem; }
+      .section-heading h2 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">SATUNA</div>
+        <div class="nav-links">
+          <a href="#menu">Menú</a>
+          <a href="#location">Ubicación</a>
+          <a href="#contact">Contacto</a>
+          <a href="#hours">Horarios</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="satuna-container">
+        <h1 class="satuna-title">SATUNA</h1>
+        <span class="coffee-food-subtitle">Coffee and Food</span>
+      </div>
+      <p>¡Disfruta de una experiencia gastronómica única en Valencia!</p>
+      <a href="#reservation" class="cta-btn">¡Reserva Ahora!</a>
+      <div class="social-cards">
+        <a href="tel:+34962071969" class="social-card">
+          <i class="fas fa-phone"></i>
+          <span>Call</span>
+        </a>
+        <a href="https://instagram.com" class="social-card" target="_blank">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+        <a href="https://wa.me/34665801788" class="social-card" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Nuestro Menú</h2>
+      </div>
+      <div class="menu-cards">
+        <div class="menu-card">
+          <div class="menu-img"></div>
+          <div class="menu-content">
+            <h3>Menús mediodía</h3>
+            <p>Descubre nuestras deliciosas opciones para el almuerzo de martes a viernes.</p>
+            <a href="#" class="menu-btn">Ver más</a>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-img"></div>
+          <div class="menu-content">
+            <h3>Fin de semana</h3>
+            <p>Nuestra carta especial para hacer tu fin de semana inolvidable.</p>
+            <a href="#" class="menu-btn">Ver más</a>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-img"></div>
+          <div class="menu-content">
+            <h3>Almuerzos en finde</h3>
+            <p>¡Los mejores brunchs y almuerzos para tus sábados y domingos!</p>
+            <a href="#" class="menu-btn">Ver más</a>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-img"></div>
+          <div class="menu-content">
+            <h3>Menú Grupos</h3>
+            <p>Especialmente diseñado para compartir con amigos y familiares.</p>
+            <a href="#" class="menu-btn">Ver más</a>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-img"></div>
+          <div class="menu-content">
+            <h3>Menú Infantil</h3>
+            <p>Opciones deliciosas y saludables para los más pequeños.</p>
+            <a href="#" class="menu-btn">Ver más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Section -->
+  <section class="promo-section">
+    <div class="container">
+      <h2>📣 PROMO DE TARDEO 📣</h2>
+      <p>Disfruta de nuestras promociones especiales todas las tardes. ¡Bebidas y tapas a precios increíbles!</p>
+      <a href="#" class="cta-btn">Descubrir</a>
+      <div class="promo-slider carousel">
+        <div class="carousel-track">
+          <!-- 3 张原始幻灯片 -->
+          <div class="slide">
+            <img src="https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg" alt="Promo 1">
+          </div>
+          <div class="slide">
+            <img src="https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg" alt="Promo 2">
+          </div>
+          <div class="slide">
+            <img src="https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg" alt="Promo 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reemplazo de Testimonial por “Reseña en Google” -->
+  <section class="review-section">
+    <div class="review-container">
+      <h2>HEY!</h2>
+      <p>
+        ¿Te encantó tu experiencia en Satuna?<br />
+        ¡Compártela con el mundo dejándonos una reseña en Google!
+      </p>
+      <!-- 替换为你自己的 Google 店面评分链接 -->
+      <a
+        href="https://www.google.com/maps/place/Satuna+coffee+%26+food"
+        target="_blank"
+        class="review-btn"
+      >
+        ¡Vamos a ello!
+      </a>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location" class="location-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>¿Dónde estamos?</h2>
+      </div>
+      <div class="location-grid">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.097099347429!2d-0.36006040000000006!3d39.489722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6047b505d2f831%3A0x7c261f218ff11fd6!2sSatuna%20coffee%20%26%20food!5e0!3m2!1szh-CN!2ses!4v1740865775078!5m2!1szh-CN!2ses" 
+          width="600" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="location-info">
+          <h3>Nos encontramos en</h3>
+          <p><span class="icon">📍</span> Carrer Emilio Baró 71, Valencia</p>
+          <p><span class="icon">🚇</span> Metro: Línea 3 - Parada Benimaclet</p>
+          <p><span class="icon">🚌</span> Bus: Líneas 10, 12, 70, 89</p>
+          <p><span class="icon">🚗</span> Parking público a 100m</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <!-- 让“Contacto”在深色背景上显示为白色 -->
+      <div class="section-heading">
+        <h2>Contacto</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <!-- 去掉 “¿Conectamos?” 这一行 -->
+          <!-- Teléfonos -->
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <div>
+              <p>962071969</p>
+              <p>34665801788</p>
+            </div>
+          </div>
+          <!-- Correo -->
+          <div class="contact-detail">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <p>info@satuna.com</p>
+            </div>
+          </div>
+          <!-- Dirección -->
+          <div class="contact-detail">
+            <div class="contact-icon">📍</div>
+            <div>
+              <p>Carrer Emilio Baró 71, Valencia</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>¡Escríbenos!</h3>
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-input" placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-input" placeholder="Tu email">
+            </div>
+            <div class="form-group">
+              <textarea class="form-input" placeholder="Tu mensaje" rows="5"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours Section -->
+  <section id="hours" class="hours-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Horarios</h2>
+      </div>
+      <div class="hours-container">
+        <div class="hours-day">
+          <span>Lunes</span>
+          <span>Cerrado</span>
+        </div>
+        <div class="hours-day">
+          <span>Martes - Viernes</span>
+          <span>9:00 - 22:00</span>
+        </div>
+        <div class="hours-day">
+          <span>Sábado</span>
+          <span>10:00 - 23:00</span>
+        </div>
+        <div class="hours-day">
+          <span>Domingo</span>
+          <span>10:00 - 22:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (Footer 已移除) -->
+
+  <script>
+    // 菜单卡片动画
+    const menuCards = document.querySelectorAll('.menu-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    menuCards.forEach(card => observer.observe(card));
+
+    // Promo Slider - 从右往左无限循环
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const slideCount = slides.length;
+
+      // 克隆原始幻灯片并追加，形成双倍
+      slides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        track.appendChild(clone);
+      });
+
+      // currentPosition 表示 track 的 X 轴偏移量
+      let currentPosition = 0;
+      function animateMarquee() {
+        // 让 track 向左移动 (position 减小)
+        currentPosition -= 0.5; // 调整滚动速度
+        track.style.transform = `translateX(${currentPosition}px)`;
+
+        // 当移动的距离超过原先所有幻灯片总宽度的一半时，重置到 0
+        // （因为有 2 份 slide，滚动完第一份就可回到初始位置，达到无缝衔接）
+        const totalWidth = track.scrollWidth / 2;
+        if (Math.abs(currentPosition) >= totalWidth) {
+          currentPosition = 0;
+        }
+        requestAnimationFrame(animateMarquee);
+      }
+      requestAnimationFrame(animateMarquee);
+    });
+  </script>
+</body>
+</html>
