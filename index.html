@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mesón molino</title>
+  <title>Satuna Coffee and Food</title>
   <!-- Font Awesome 用于图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
     integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2DhKNfTZ4Dl4UpH4Tn6n0d6Pu3G0qZJ/peHy51N8JcN1I2OR8UbJ12YQeRLeS/4wA==" 
@@ -21,10 +21,6 @@
       --accent: #f1c40f;   /* 明亮黄色 */
       --font-main: 'Nunito', sans-serif; /* 主要字体 */
     }
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
-    }
     * {
       margin: 0;
       padding: 0;
@@ -36,6 +32,7 @@
       background-color: var(--light);
       color: var(--dark);
       line-height: 1.7;
+      overflow-x: hidden;
     }
     .container {
       max-width: 1200px;
@@ -86,7 +83,7 @@
     }
     /* Hero Section */
     .hero {
-      height: 88vh;
+      height: 85vh;
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                   url('https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg') center/cover no-repeat;
       color: white;
@@ -96,6 +93,7 @@
       text-align: center;
       padding: 0 20px;
       position: relative;
+      overflow: hidden;
     }
     .hero-content {
       max-width: 800px;
@@ -106,31 +104,34 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .meson-container {
+    .satuna-container {
       position: relative;
       display: inline-block;
-      margin-bottom: 1px;
+      margin-bottom: 40px;
     }
-    .meson-title {
-      font-size: 6rem; /* 调整标题大小 */
+    .satuna-title {
+      font-size: 8rem;
       font-weight: 900;
       background: linear-gradient(270deg, #f39c12, #e74c3c, #9b59b6, #f39c12);
       background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: gradientAnimation 6s ease infinite;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      white-space: nowrap;
-      text-align: center;
-      max-width: 100%;
-      display: block;
-      overflow: hidden;
+      letter-spacing: 2px;
     }
     @keyframes gradientAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+    .coffee-food-subtitle {
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
     .hero p {
       font-size: 1.3rem;
@@ -315,7 +316,7 @@
     }
     .promo-slider.carousel .carousel-track {
       display: flex;
-      white-space: nowrap;
+      white-space: nowrap; /* 保证水平排列不折行 */
       transform: translateX(0);
     }
     .promo-slider.carousel .slide {
@@ -336,7 +337,7 @@
       transform: scale(1.12);
       filter: brightness(1.1);
     }
-    /* Review Section */
+    /* 替换 Testimonials 为 “评价邀请” */
     .review-section {
       display: flex;
       justify-content: center;
@@ -345,6 +346,7 @@
     }
     .review-container {
       text-align: center;
+      /* 与 SATUNA 标题同款流动渐变背景 */
       background: linear-gradient(270deg, #f39c12, #e74c3c, #9b59b6, #f39c12);
       background-size: 400% 400%;
       animation: gradientAnimation 6s ease infinite;
@@ -379,6 +381,7 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
+
     /* Location Section */
     .location-section {
       padding: 80px 0;
@@ -415,6 +418,7 @@
       color: white;
       padding: 80px 0;
     }
+    /* 将 contact-section 里的 section-heading h2 文字改为白色 */
     .contact-section .section-heading h2 {
       color: #fff !important;
     }
@@ -509,13 +513,15 @@
     /* Responsive */
     @media (max-width: 992px) {
       .hero { padding: 0 40px; }
-      .meson-title { font-size: 6rem; }
+      .satuna-title { font-size: 6rem; }
+      .coffee-food-subtitle { font-size: 1.6rem; }
       .hero p { font-size: 1.2rem; }
       .location-grid, .contact-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .meson-title { font-size: 4rem; }
+      .satuna-title { font-size: 4rem; }
+      .coffee-food-subtitle { font-size: 1.4rem; }
       .section-heading h2 { font-size: 2.4rem; }
     }
   </style>
@@ -524,7 +530,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo">Mesón molino</div>
+        <div class="logo">SATUNA</div>
         <div class="nav-links">
           <a href="#menu">Menú</a>
           <a href="#location">Ubicación</a>
@@ -538,14 +544,14 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <div class="meson-container">
-        <h2 class="meson-title">Mesón molino</h2>
+      <div class="satuna-container">
+        <h1 class="satuna-title">SATUNA</h1>
+        <span class="coffee-food-subtitle">Coffee and Food</span>
       </div>
       <p>¡Disfruta de una experiencia gastronómica única en Valencia!</p>
       <a href="#reservation" class="cta-btn">¡Reserva Ahora!</a>
       <div class="social-cards">
-        <!-- 改进后的 Call 按钮：直接调用拨号 -->
-        <a href="#" onclick="window.location.href='tel:+34962071969'; return false;" class="social-card">
+        <a href="tel:+34962071969" class="social-card">
           <i class="fas fa-phone"></i>
           <span>Call</span>
         </a>
@@ -553,8 +559,7 @@
           <i class="fab fa-instagram"></i>
           <span>Instagram</span>
         </a>
-        <!-- 改进后的 WhatsApp 链接 -->
-        <a href="whatsapp://send?phone=34665801788" class="social-card">
+        <a href="https://wa.me/34665801788" class="social-card" target="_blank">
           <i class="fab fa-whatsapp"></i>
           <span>WhatsApp</span>
         </a>
@@ -621,6 +626,7 @@
       <a href="#" class="cta-btn">Descubrir</a>
       <div class="promo-slider carousel">
         <div class="carousel-track">
+          <!-- 3 张原始幻灯片 -->
           <div class="slide">
             <img src="https://i.pinimg.com/originals/00/4a/1a/004a1a6cf02bd1565ad82861d53a680c.jpg" alt="Promo 1">
           </div>
@@ -635,16 +641,17 @@
     </div>
   </section>
 
-  <!-- Review Section -->
+  <!-- Reemplazo de Testimonial por “Reseña en Google” -->
   <section class="review-section">
     <div class="review-container">
       <h2>HEY!</h2>
       <p>
-        ¿Te encantó tu experiencia en Mesón molino?<br />
+        ¿Te encantó tu experiencia en Satuna?<br />
         ¡Compártela con el mundo dejándonos una reseña en Google!
       </p>
+      <!-- 替换为你自己的 Google 店面评分链接 -->
       <a
-        href="https://www.google.com/maps/place/Mesón+molino"
+        href="https://www.google.com/maps/place/Satuna+coffee+%26+food"
         target="_blank"
         class="review-btn"
       >
@@ -660,7 +667,7 @@
         <h2>¿Dónde estamos?</h2>
       </div>
       <div class="location-grid">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.097099347429!2d-0.36006040000000006!3d39.489722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6047b505d2f831%3A0x7c261f218ff11fd6!2sMes%C3%B3n%20molino!5e0!3m2!1ses!2ses!4v1740865775078!5m2!1ses!2ses" 
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.097099347429!2d-0.36006040000000006!3d39.489722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6047b505d2f831%3A0x7c261f218ff11fd6!2sSatuna%20coffee%20%26%20food!5e0!3m2!1szh-CN!2ses!4v1740865775078!5m2!1szh-CN!2ses" 
           width="600" 
           height="450" 
           style="border:0;" 
@@ -682,11 +689,14 @@
   <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <div class="container">
+      <!-- 让“Contacto”在深色背景上显示为白色 -->
       <div class="section-heading">
         <h2>Contacto</h2>
       </div>
       <div class="contact-grid">
         <div class="contact-info">
+          <!-- 去掉 “¿Conectamos?” 这一行 -->
+          <!-- Teléfonos -->
           <div class="contact-detail">
             <div class="contact-icon">📞</div>
             <div>
@@ -694,12 +704,14 @@
               <p>34665801788</p>
             </div>
           </div>
+          <!-- Correo -->
           <div class="contact-detail">
             <div class="contact-icon">✉️</div>
             <div>
-              <p>info@mesonmolino.com</p>
+              <p>info@satuna.com</p>
             </div>
           </div>
+          <!-- Dirección -->
           <div class="contact-detail">
             <div class="contact-icon">📍</div>
             <div>
@@ -709,15 +721,15 @@
         </div>
         <div class="contact-form">
           <h3>¡Escríbenos!</h3>
-          <form id="contactForm">
+          <form>
             <div class="form-group">
-              <input type="text" class="form-input" placeholder="Tu nombre" required>
+              <input type="text" class="form-input" placeholder="Tu nombre">
             </div>
             <div class="form-group">
-              <input type="email" class="form-input" placeholder="Tu email" required>
+              <input type="email" class="form-input" placeholder="Tu email">
             </div>
             <div class="form-group">
-              <textarea class="form-input" placeholder="Tu mensaje" rows="5" required></textarea>
+              <textarea class="form-input" placeholder="Tu mensaje" rows="5"></textarea>
             </div>
             <button type="submit" class="submit-btn">Enviar</button>
           </form>
@@ -753,7 +765,8 @@
     </div>
   </section>
 
-  <!-- Scripts -->
+  <!-- (Footer 已移除) -->
+
   <script>
     // 菜单卡片动画
     const menuCards = document.querySelectorAll('.menu-card');
@@ -771,15 +784,23 @@
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.carousel-track');
       const slides = Array.from(track.children);
-      // 克隆幻灯片，形成双份以便实现无缝滚动
+      const slideCount = slides.length;
+
+      // 克隆原始幻灯片并追加，形成双倍
       slides.forEach(slide => {
         const clone = slide.cloneNode(true);
         track.appendChild(clone);
       });
+
+      // currentPosition 表示 track 的 X 轴偏移量
       let currentPosition = 0;
       function animateMarquee() {
+        // 让 track 向左移动 (position 减小)
         currentPosition -= 0.5; // 调整滚动速度
-        track.style.transform = `translateX(${currentPosition}px)`;
+        track.style.transform = translateX(${currentPosition}px);
+
+        // 当移动的距离超过原先所有幻灯片总宽度的一半时，重置到 0
+        // （因为有 2 份 slide，滚动完第一份就可回到初始位置，达到无缝衔接）
         const totalWidth = track.scrollWidth / 2;
         if (Math.abs(currentPosition) >= totalWidth) {
           currentPosition = 0;
@@ -787,29 +808,6 @@
         requestAnimationFrame(animateMarquee);
       }
       requestAnimationFrame(animateMarquee);
-    });
-
-    // Contact Form: 检查 email 格式并构造 mailto 链接
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = this.querySelector('input[type="text"]').value.trim();
-      const email = this.querySelector('input[type="email"]').value.trim();
-      const message = this.querySelector('textarea').value.trim();
-      
-      // 使用正则表达式验证 email 格式
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        alert("Por favor ingresa un email válido.");
-        return;
-      }
-      
-      const subject = encodeURIComponent(name);
-      const body = encodeURIComponent(message + "\n\nDe: " + email);
-      
-      // 调用默认邮件客户端，预填主题和内容
-      window.location.href = "mailto:info@mesonmolino.com?subject=" + subject + "&body=" + body;
-      
-      // 注意：直接自动发送邮件需要后端支持或第三方邮件 API。
     });
   </script>
 </body>
